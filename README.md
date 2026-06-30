@@ -91,56 +91,6 @@ The diagnosis is converted into a weakness-targeted sampling procedure over synt
 
 General-domain performance remains close to unchanged, and operation-level re-evaluation confirms that the gains concentrate on the diagnosed slices.
 
-## Repository Contents
-
-This repository is organized around the analysis toolkit described in the paper.
-
-```text
-.
-├── schemas/                 # Taxonomy definitions and label spaces
-│   ├── evaluation_sample_taxonomy/
-│   └── non_instruction_data_taxonomy/
-├── prompts/                 # Annotation prompts for evaluation and data samples
-├── mapping_rules/           # Evaluation-to-data mapping rules and examples
-├── analysis/                # Slice-level diagnosis and aggregation utilities
-├── case_studies/            # Reproducible analyses for the two case studies
-├── examples/                # Example inputs, annotations, and expected outputs
-└── docs/                    # Additional documentation and paper notes
-```
-
-## Method Workflow
-
-### Step 1: Annotate evaluation samples
-
-Each evaluation sample is annotated with background condition, task type, solving operation, and output constraint labels.
-
-### Step 2: Diagnose weak capability slices
-
-Model predictions are aggregated by label-defined slices to identify stable weaknesses below the benchmark level.
-
-### Step 3: Map weaknesses to data affordances
-
-Weak slices are translated into data-side requirements, such as relevant domains, discourse structures, operation opportunities, and supervision-density constraints.
-
-### Step 4: Select a data action
-
-Depending on the corpus and diagnosis, the action may be:
-
-- retrieving matching corpus segments;
-- reweighting existing data;
-- synthesizing targeted instruction data;
-- filtering low-signal or distracting data;
-- repairing missing supervision signals.
-
-### Step 5: Validate under controlled experiments
-
-Every intervention is evaluated by checking:
-
-- target-slice improvement;
-- related benchmark improvement;
-- non-target slice stability;
-- broad regression risk;
-- whether benchmark-level gains align with the diagnosed capability slice.
 
 ## Why This Matters
 
@@ -154,18 +104,3 @@ This framework is designed for practical LLM pre-training workflows where engine
 ## Limitations
 
 The paper treats mapping rules as structured heuristics rather than causal laws. The two case studies are run on a fixed set of benchmarks and a single continued pre-training pipeline. The instruction-data branch is validated experimentally, while the non-instruction data taxonomy is primarily used as a descriptive and mapping vocabulary in the reported experiments.
-
-## Citation
-
-```bibtex
-@article{li2026dataevaluationclosedloop,
-  title={Data and Evaluation Closed-Loop for Model Capability Enhancement},
-  author={Li, Zhixuan and Yuan, Jiangan and Xu, Han},
-  journal={arXiv preprint arXiv:2606.28471},
-  year={2026}
-}
-```
-
-## Paper
-
-- arXiv PDF: [https://arxiv.org/pdf/2606.28471](https://arxiv.org/pdf/2606.28471)
